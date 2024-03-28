@@ -1,0 +1,148 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #242424, #535bf2);
+}
+
+.app {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 50px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+}
+
+.input {
+  margin-top: 20px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #535bf2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #3a3f9f;
+  }
+}
+
+.instructions {
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+
+.feedbackDisplay {
+  &__guessFeedback {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+
+  &__letterBox {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+
+    &.correct {
+      background-color: #90ee90;
+    }
+
+    &.misplaced {
+      background-color: #ffffe0;
+    }
+
+    &.incorrect {
+      background-color: #ffcccb;
+    }
+  }
+}
+
+.wordFetcher {
+  &__option {
+    display: block;
+    margin: 10px;
+  }
+  &__input {
+    margin-left: 10px;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+
+  p {
+    color: black;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #535bf2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #3a3f9f;
+    }
+  }
+}
+
+.game-end-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
+  p {
+    font-size: 1.2em;
+    margin: 0;
+  }
+}
