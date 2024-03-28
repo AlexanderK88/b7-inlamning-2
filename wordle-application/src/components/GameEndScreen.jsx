@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function GameEndScreen({ wordLength, timeTaken, uniqueLetters, onReplay, guesses }) {
+export default function GameEndScreen({ wordLength, timeTaken, uniqueLetters, onReplay, guesses, correctWord }) {
   const [userName, setUserName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -16,6 +16,7 @@ export default function GameEndScreen({ wordLength, timeTaken, uniqueLetters, on
         uniqueLetters,
         guesses,
         userName,
+        correctWord,
       }),
     });
 
@@ -29,6 +30,7 @@ export default function GameEndScreen({ wordLength, timeTaken, uniqueLetters, on
   return (
     <div className="game-end-screen">
       <h2>Congratulations, you won!</h2>
+      <p>Correct Word: {correctWord}</p>
       <p>Word length: {wordLength}</p>
       <p>Time taken: {timeTaken} seconds</p>
       <p>Unique letters: {uniqueLetters ? 'Yes' : 'No'}</p>

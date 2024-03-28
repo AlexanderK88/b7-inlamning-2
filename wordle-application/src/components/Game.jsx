@@ -45,7 +45,14 @@ export default function Game({ word, uniqueLetters, onGameEnd }) {
   if (endTime) {
     const timeTaken = Math.round((endTime - startTime) / 1000);
     return (
-      <GameEndScreen wordLength={word.length} timeTaken={timeTaken} uniqueLetters={uniqueLetters} onReplay={onGameEnd} guesses={feedback.length} />
+      <GameEndScreen
+        wordLength={word.length}
+        timeTaken={timeTaken}
+        uniqueLetters={uniqueLetters}
+        onReplay={onGameEnd}
+        guesses={feedback.length}
+        correctWord={word}
+      />
     );
   }
 

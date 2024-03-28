@@ -29,13 +29,14 @@ app.post('/api/feedback', express.json(), async (req, res) => {
 });
 
 app.post('/api/submitscore', express.json(), (req, res) => {
-  const { wordLength, timeTaken, uniqueLetters, guesses, userName } = req.body;
+  const { wordLength, timeTaken, uniqueLetters, guesses, userName, correctWord } = req.body;
   console.log({
+    userName,
+    correctWord,
     wordLength,
     timeTaken,
     uniqueLetters,
     guesses,
-    userName,
   });
   res.status(200).json({ message: 'Data received.' });
 });
