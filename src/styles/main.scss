@@ -1,0 +1,31 @@
+@import 'variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Sora', sans-serif;
+}
+
+.html {
+  overflow-x: hidden;
+  &.html--overflowHidden {
+    overflow: hidden;
+  }
+}
+
+main {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(45deg, #242424, #535bf2);
+  background-repeat: no-repeat;
+}
+
+@import 'reactApp';
+@import 'header';
+@import 'index';
+@import 'highscore';
+@import 'aboutProject';

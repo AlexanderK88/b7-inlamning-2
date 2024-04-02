@@ -1,0 +1,20 @@
+<div class='aboutProject__container'>
+  <h1 class='aboutProject__title'>About the Project</h1>
+  <p>This project is a Wordle-inspired game with a high score list and an "About" page. The game is a full-stack application with three pages: a home
+    page where you can play the game, a static information page about the project, and a server-side rendered high score list.</p>
+  <br />
+  <p>The game is developed full-stack, with the GUI developed in React and parts of the game logic on the backend via an API. The game's rules are
+    defined by the algorithms described in the first task of the course. The game selects a random word each time the game starts - the user can
+    decide how many letters the word should have and whether it can contain repeating letters.</p>
+  <br />
+  <p>The user guesses what the word is by typing it into a free text field. The game provides feedback according to the feedback algorithm, by showing
+    the user's letters in green (correct), yellow (misplaced), or red (incorrect). When the user guesses the correct word, the game is over.</p>
+  <br />
+  <p>The random selection of words is done on the server via an API call. A data source can be the data file available at
+    https://github.com/dwyl/english-words. After the user has completed the game, they have the opportunity to enter their name and submit the result
+    to a high score list. The data submitted includes the name, the time from the start of the game to the end, the guesses, and the settings
+    regarding the length of the word and unique letters.</p>
+  <br />
+  <p>On a separate page/route, a high score list is displayed. The list is server-side rendered. This is the static page where the project is
+    described.</p>
+</div>

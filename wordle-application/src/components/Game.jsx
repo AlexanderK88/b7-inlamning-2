@@ -67,7 +67,7 @@ export default function Game({ word, uniqueLetters, onGameEnd }) {
       <h1>Lets play Wordle!</h1>
       <p className="instructions">
         Instructions: You chose a word length of {word.length}. Now, guess a word with the same number of letters. Then click "Submit Guess" to submit
-        your guess. {word}
+        your guess.
       </p>
       <FeedbackDisplay feedback={feedback} />
       <GuessInput guess={guess} onGuessChange={setGuess} onGuessSubmit={handleGuess} />
