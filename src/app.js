@@ -1,44 +1,49 @@
 import express from 'express';
-import { generateWord } from './generateWord.js';
-import { feedback } from './feedback.js';
+import { engine } from 'express-handlebars';
+import apiRouter from '../routes/api.js';
+import getHighScores from './getHighScores.js';
 
 const app = express();
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './templates');
 
-app.get('/api/word', async (req, res) => {
-  const desiredLength = parseInt(req.query.length) || 5;
-  const uniqueLetters = req.query.unique === 'true';
-  try {
-    const word = await generateWord(desiredLength, uniqueLetters);
-    res.json({ word });
-  } catch (e) {
-    res.status(500).json({ error: 'An error occurred while fetching the words.' });
-  }
-});
+app.use('/api', apiRouter);
 
-app.post('/api/feedback', express.json(), async (req, res) => {
-  const { guess, rightAnswer } = req.body;
-  if (!guess || !rightAnswer) {
-    return res.status(400).json({ error: 'Both guess and rightAnswer are required.' });
-  }
-  try {
-    const results = feedback(guess, rightAnswer);
-    res.json(results);
-  } catch (e) {
-    res.status(500).json({ error: 'An error occurred while processing the guess.' });
-  }
-});
+const menu = [
+  { name: 'Highscore', url: '/highscore' },
+  { name: 'About project', url: '/aboutproject' },
+];
 
-app.post('/api/submitscore', express.json(), (req, res) => {
-  const { wordLength, timeTaken, uniqueLetters, guesses, userName, correctWord } = req.body;
-  console.log({
-    userName,
-    correctWord,
-    wordLength,
-    timeTaken,
-    uniqueLetters,
-    guesses,
+async function renderPage(response, page, highScores) {
+  response.render(page, {
+    menuLink: menu.map((link) => {
+      return {
+        label: link.name,
+        link: link.url,
+      };
+    }),
+    highScores,
   });
-  res.status(200).json({ message: 'Data received.' });
+}
+
+app.get('/', async (request, response) => {
+  renderPage(response, 'index');
 });
+
+app.get('/highscore', async (request, response) => {
+  try {
+    const highScores = await getHighScores();
+    renderPage(response, 'highscore', highScores);
+  } catch (error) {
+    console.error('Error getting high scores:', error);
+  }
+});
+
+app.get('/aboutproject', async (request, response) => {
+  renderPage(response, 'aboutproject');
+});
+
+app.use('/static', express.static('./static'));
 
 export default app;

@@ -1,0 +1,26 @@
+<div class='highScore__container'>
+  <h1 class='highScore__title'>High Scores</h1>
+
+  <table class='highScore__table'>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Word Length</th>
+        <th>Time Taken</th>
+        <th>Unique Letters</th>
+        <th>Guesses</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each highScores}}
+        <tr>
+          <td data-label='Username'><strong>{{this.userName}}</strong></td>
+          <td data-label='Word Length'>{{this.wordLength}}</td>
+          <td data-label='Time Taken'>{{this.timeTaken}}s</td>
+          <td data-label='Unique Letters'>{{this.uniqueLetters}}</td>
+          <td data-label='Guesses'>{{this.guesses}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

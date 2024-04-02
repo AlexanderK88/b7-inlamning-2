@@ -7,22 +7,26 @@
   "scripts": {
     "start": "node .",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
-    "sass:watch": "sass --no-source-map --watch src/main.scss static/main.css",
+    "sass:watch": "sass --no-source-map --watch src/styles/main.scss main.css",
+    "sass:compile": "sass --no-source-map src/styles/main.scss static/main.css",
     "dev": "nodemon .",
     "build": "npm-run-all --parallel sass:watch dev"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.0.3",
-    "sass": "^1.69.5",
     "cross-env": "^7.0.3",
-    "jest": "^27.4.5"
+    "jest": "^27.4.5",
+    "nodemon": "^3.0.3",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.69.5"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.2",
     "handlebars": "^4.7.7",
+    "mongodb": "^6.5.0",
     "node-fetch": "^3.1.1"
   }
 }
