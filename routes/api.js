@@ -8,6 +8,8 @@ dotenv.config();
 
 const apiRouter = express.Router();
 
+apiRouter.use(express.json());
+
 apiRouter.get('/word', async (req, res) => {
   const desiredLength = parseInt(req.query.length) || 5;
   const uniqueLetters = req.query.unique === 'true';
@@ -19,7 +21,7 @@ apiRouter.get('/word', async (req, res) => {
   }
 });
 
-apiRouter.post('/feedback', express.json(), async (req, res) => {
+apiRouter.post('/feedback', async (req, res) => {
   const { guess, rightAnswer } = req.body;
   if (!guess || !rightAnswer) {
     return res.status(400).json({ error: 'Both guess and rightAnswer are required.' });
@@ -32,7 +34,7 @@ apiRouter.post('/feedback', express.json(), async (req, res) => {
   }
 });
 
-apiRouter.post('/submitscore', express.json(), async (req, res) => {
+apiRouter.post('/submitscore', async (req, res) => {
   const { wordLength, timeTaken, uniqueLetters, guesses, userName, correctWord } = req.body;
 
   const url = process.env.MONGO_URI;
