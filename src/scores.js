@@ -6,7 +6,7 @@ const scoreSchema = new mongoose.Schema({
   wordLength: Number,
   timeTaken: Number,
   uniqueLetters: Boolean,
-  guesses: Array,
+  guesses: Number,
 });
 
 const Score = mongoose.model('Score', scoreSchema);
