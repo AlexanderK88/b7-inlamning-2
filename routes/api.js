@@ -1,8 +1,9 @@
 import express from 'express';
 import { generateWord } from '../src/generateWord.js';
 import { feedback } from '../src/feedback.js';
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import Score from '../src/scores.js';
 
 dotenv.config();
 
@@ -39,17 +40,10 @@ apiRouter.post('/submitscore', async (req, res) => {
 
   const url = process.env.MONGO_URI;
 
-  const dbName = 'wordleDatabase';
-
-  const client = new MongoClient(url);
-
   try {
-    await client.connect();
+    await mongoose.connect(url);
 
-    const db = client.db(dbName);
-    const collection = db.collection('scores');
-
-    const result = await collection.insertOne({
+    const score = new Score({
       userName,
       correctWord,
       wordLength,
@@ -58,12 +52,14 @@ apiRouter.post('/submitscore', async (req, res) => {
       guesses,
     });
 
+    const result = await score.save();
+
     res.status(200).json({ message: 'Data received.' });
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'An error occurred while submitting the score.' });
   } finally {
-    await client.close();
+    await mongoose.connection.close();
   }
 });
 

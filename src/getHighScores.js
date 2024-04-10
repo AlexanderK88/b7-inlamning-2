@@ -1,27 +1,22 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import Score from './scores.js'; // import the Score model
 
 dotenv.config();
 
 async function getHighScores() {
   const url = process.env.MONGO_URI;
-  const dbName = 'wordleDatabase';
-
-  const client = new MongoClient(url);
 
   try {
-    await client.connect();
+    await mongoose.connect(url);
 
-    const db = client.db(dbName);
-    const collection = db.collection('scores');
-
-    const highScores = await collection.find().toArray();
+    const highScores = (await Score.find().exec()).map((doc) => doc.toObject());
     return highScores;
   } catch (e) {
     console.error(e);
     throw new Error('An error occurred while fetching the high scores.');
   } finally {
-    await client.close();
+    await mongoose.connection.close();
   }
 }
 
