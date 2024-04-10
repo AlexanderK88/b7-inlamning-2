@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const scoreSchema = new mongoose.Schema({
+const Score = mongoose.model('Scores', {
   userName: String,
   correctWord: String,
   wordLength: Number,
@@ -8,7 +8,5 @@ const scoreSchema = new mongoose.Schema({
   uniqueLetters: Boolean,
   guesses: Number,
 });
-
-const Score = mongoose.model('Score', scoreSchema);
 
 export default Score;
