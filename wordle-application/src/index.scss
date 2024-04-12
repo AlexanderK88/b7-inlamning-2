@@ -10,6 +10,7 @@ body {
 }
 
 .app {
+  position: relative;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -22,6 +23,8 @@ body {
   align-items: center;
   text-align: center;
   padding: 20px;
+  min-width: 350px;
+  border-radius: 15px;
 
   h1 {
     font-size: 2rem;
@@ -118,11 +121,13 @@ body {
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 80%;
   height: 30%;
+  min-height: 300px;
+  min-width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -153,9 +158,9 @@ body {
     }
   }
 
-  @media (min-width: 600px) {
-    width: 50%;
-    height: 20%;
+  @media (min-width: 700px) {
+    width: 40%;
+    height: 30%;
 
     p {
       font-size: 1.2em;

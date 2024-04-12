@@ -23,6 +23,7 @@ main {
 }
 
 .app {
+  position: relative;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -125,12 +126,13 @@ main {
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 80%;
   height: 30%;
-  min-width: 320px;
+  min-height: 300px;
+  min-width: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -297,6 +299,7 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 40px 0;
   padding: 20px;
   border-radius: 15px;
 }
