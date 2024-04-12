@@ -36,23 +36,12 @@ apiRouter.post('/feedback', async (req, res) => {
 });
 
 apiRouter.post('/submitscore', async (req, res) => {
-  const { wordLength, timeTaken, uniqueLetters, guesses, userName, correctWord } = req.body;
-
   const url = process.env.MONGO_URI;
 
   try {
     await mongoose.connect(url);
 
-    const score = new Score({
-      userName,
-      correctWord,
-      wordLength,
-      timeTaken,
-      uniqueLetters,
-      guesses,
-    });
-
-    const result = await score.save();
+    await new Score(req.body).save();
 
     res.status(200).json({ message: 'Data received.' });
   } catch (e) {
