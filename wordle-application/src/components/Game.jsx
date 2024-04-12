@@ -20,6 +20,11 @@ export default function Game({ word, uniqueLetters, onGameEnd }) {
       return;
     }
 
+    if (/[^A-Za-z]/.test(guess)) {
+      setModalMessage('Your guess should only contain letters!');
+      return;
+    }
+
     try {
       const response = await fetch('/api/feedback', {
         method: 'POST',
