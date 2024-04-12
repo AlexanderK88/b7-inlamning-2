@@ -1,11 +1,7 @@
 import express from 'express';
 import { generateWord } from '../src/generateWord.js';
 import { feedback } from '../src/feedback.js';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import Score from '../src/scores.js';
-
-dotenv.config();
 
 const apiRouter = express.Router();
 
@@ -36,19 +32,12 @@ apiRouter.post('/feedback', async (req, res) => {
 });
 
 apiRouter.post('/submitscore', async (req, res) => {
-  const url = process.env.MONGO_URI;
-
   try {
-    await mongoose.connect(url);
-
     await new Score(req.body).save();
-
     res.status(200).json({ message: 'Data received.' });
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'An error occurred while submitting the score.' });
-  } finally {
-    await mongoose.connection.close();
   }
 });
 

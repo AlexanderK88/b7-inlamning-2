@@ -1,22 +1,12 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import Score from './scores.js'; // import the Score model
-
-dotenv.config();
+import Score from './scores.js';
 
 async function getHighScores() {
-  const url = process.env.MONGO_URI;
-
   try {
-    await mongoose.connect(url);
-
     const highScores = await Score.find().lean();
     return highScores;
   } catch (e) {
     console.error(e);
     throw new Error('An error occurred while fetching the high scores.');
-  } finally {
-    await mongoose.connection.close();
   }
 }
 
