@@ -10,7 +10,7 @@ async function getHighScores() {
   try {
     await mongoose.connect(url);
 
-    const highScores = (await Score.find().exec()).map((doc) => doc.toObject());
+    const highScores = await Score.find().lean();
     return highScores;
   } catch (e) {
     console.error(e);
